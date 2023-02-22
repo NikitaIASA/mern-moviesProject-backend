@@ -16,13 +16,19 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    isVerified: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
 })
 
-userSchema.pre("save", async function (next) { // hashing password
+userSchema.pre("save", async function (next) {
     if (this.isModified("password")) {
         this.password = await bcrypt.hash(this.password, 10);
     }
+
     next();
 });
 

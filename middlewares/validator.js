@@ -17,5 +17,6 @@ exports.validate = (req, res, next) => {
     if (error.length) {
         return res.json({ error: error[0].msg });
     }
+
     next();
 };
