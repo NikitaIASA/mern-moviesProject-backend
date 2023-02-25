@@ -1,7 +1,10 @@
-const mongoose = require('mongoose');
-const DB_URL = "mongodb+srv://admin:admin@moviesproject.mwlkcuh.mongodb.net/moviesProject?retryWrites=true&w=majority"
+const mongoose = require("mongoose");
 
 mongoose
-  .connect(DB_URL)
-  .then(() => console.log('DB ok'))
-  .catch((err) => console.log('DB error', err));
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("db is connected!");
+  })
+  .catch((ex) => {
+    console.log("db connection failed: ", ex);
+  });
